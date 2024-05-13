@@ -1,20 +1,20 @@
 const btnCart = document.querySelector('.container-cart-icon');
 const containerCartProducts = document.querySelector(
-	'.container-cart-products'
+    '.container-cart-products'
 );
 
 btnCart.addEventListener('click', () => {
-	containerCartProducts.classList.toggle('hidden-cart');
+    containerCartProducts.classList.toggle('hidden-cart');
 });
 
 /* ========================= */
 const cartInfo = document.querySelector('.cart-product');
 const rowProduct = document.querySelector('.row-product');
 
-// Lista de todos los contenedores de productos
+
 const productsList = document.querySelector('.container-items');
 
-// Variable de arreglos de Productos
+
 let allProducts = [];
 
 const valorTotal = document.querySelector('.total-pagar');
@@ -25,75 +25,75 @@ const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
 
 productsList.addEventListener('click', e => {
-	if (e.target.classList.contains('btn-add-cart')) {
-		const product = e.target.parentElement;
+    if (e.target.classList.contains('btn-add-cart')) {
+        const product = e.target.parentElement;
 
-		const infoProduct = {
-			quantity: 1,
-			title: product.querySelector('h2').textContent,
-			price: product.querySelector('p').textContent,
-		};
+        const infoProduct = {
+            quantity: 1,
+            title: product.querySelector('h2').textContent,
+            price: product.querySelector('p').textContent,
+        };
 
-		const exits = allProducts.some(
-			product => product.title === infoProduct.title
-		);
+        const exits = allProducts.some(
+            product => product.title === infoProduct.title
+        );
 
-		if (exits) {
-			const products = allProducts.map(product => {
-				if (product.title === infoProduct.title) {
-					product.quantity++;
-					return product;
-				} else {
-					return product;
-				}
-			});
-			allProducts = [...products];
-		} else {
-			allProducts = [...allProducts, infoProduct];
-		}
+        if (exits) {
+            const products = allProducts.map(product => {
+                if (product.title === infoProduct.title) {
+                    product.quantity++;
+                    return product;
+                } else {
+                    return product;
+                }
+            });
+            allProducts = [...products];
+        } else {
+            allProducts = [...allProducts, infoProduct];
+        }
 
-		showHTML();
-	}
+        showHTML();
+    }
 });
 
 rowProduct.addEventListener('click', e => {
-	if (e.target.classList.contains('icon-close')) {
-		const product = e.target.parentElement;
-		const title = product.querySelector('p').textContent;
+    if (e.target.classList.contains('icon-close')) {
+        const product = e.target.parentElement;
+        const title = product.querySelector('p').textContent;
 
-		allProducts = allProducts.filter(
-			product => product.title !== title
-		);
+        allProducts = allProducts.filter(
+            product => product.title !== title
+        );
 
-		console.log(allProducts);
+        console.log(allProducts);
 
-		showHTML();
-	}
+        showHTML();
+    }
 });
 
-// Funcion para mostrar  HTML
+
 const showHTML = () => {
-	if (!allProducts.length) {
-		cartEmpty.classList.remove('hidden');
-		rowProduct.classList.add('hidden');
-		cartTotal.classList.add('hidden');
-	} else {
-		cartEmpty.classList.add('hidden');
-		rowProduct.classList.remove('hidden');
-		cartTotal.classList.remove('hidden');
-	}
+    if (!allProducts.length) {
+        cartEmpty.classList.remove('hidden');
+        rowProduct.classList.add('hidden');
+        cartTotal.classList.add('hidden');
+    } else {
+        cartEmpty.classList.add('hidden');
+        rowProduct.classList.remove('hidden');
+        cartTotal.classList.remove('hidden');
+    }
 
-	// Limpiar HTML
-	rowProduct.innerHTML = '';
+    
+    rowProduct.innerHTML = '';
 
-	let total = 0;
-	let totalOfProducts = 0;
+    let total = 0;
+    let totalOfProducts = 0;
 
-	allProducts.forEach(product => {
-		const containerProduct = document.createElement('div');
-		containerProduct.classList.add('cart-product');
+    allProducts.forEach(product => {
+        const containerProduct = document.createElement('div');
+        containerProduct.classList.add('cart-product');
 
-		containerProduct.innerHTML = `
+        containerProduct.innerHTML = `
             <div class="info-cart-product">
                 <span class="cantidad-producto-carrito">${product.quantity}</span>
                 <p class="titulo-producto-carrito">${product.title}</p>
@@ -115,13 +115,16 @@ const showHTML = () => {
             </svg>
         `;
 
-		rowProduct.append(containerProduct);
+        rowProduct.append(containerProduct);
 
-		total =
-			total + parseInt(product.quantity * product.price.slice(1));
-		totalOfProducts = totalOfProducts + product.quantity;
-	});
+        
+        const price = parseFloat(product.price.replace('$', '').replace('.', '').replace(',', '.'));
+        total += price * product.quantity;
 
-	valorTotal.innerText = `$${total}`;
-	countProducts.innerText = totalOfProducts;
+        totalOfProducts += product.quantity;
+    });
+
+    const formattedTotal = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(total);
+    valorTotal.innerText = formattedTotal;
+    countProducts.innerText = totalOfProducts;
 };
