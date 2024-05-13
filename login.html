@@ -9,7 +9,7 @@
 <body>
     <div class="formulario">
         <h1>Inicio de sesion</h1>
-        <form method="post">
+        <form method="post" id="loginForm">
             <div class="username">
                 <input type="text" required>
                 <label>Nombre de usuario</label>
@@ -19,13 +19,21 @@
                 <label>contraseña</label>
             </div>
             <div class="recordar">
-                <a href="recoverpassword.html"></a>Olvidaste la contraseña?
+                <a href="recoverpassword.html">Olvidaste la contraseña?</a>
             </div>
-            <a href="index.html"><input type="submit" value="Iniciar"></a>
+            <input type="submit" value="Iniciar">
             <div class="registrarse">
                 Quiero <a href="register.html">registrarme</a>
             </div>
         </form>
     </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe normalmente
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
 </html>
