@@ -9,7 +9,7 @@
 <body>
     <div class="formulario">
         <h1>Registrarse</h1>
-        <form method="post">
+        <form method="post" id="registerForm">
             <div class="username">
                 <input type="text" required>
                 <label>Ingrese un nombre de usuario</label>
@@ -25,6 +25,13 @@
             </div>
         </form>
     </div>
-    
+
+    <script>
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe normalmente
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
 </html>
