@@ -11,12 +11,20 @@
         <h1>Registrarse</h1>
         <form method="post" id="registerForm">
             <div class="username">
-                <input type="text" required>
+                <input type="text" id="username" required>
                 <label>Ingrese un nombre de usuario</label>
             </div>
             <div class="username">
-                <input type="password" required>
+                <input type="email" id="email" required>
+                <label>Ingrese un correo electrónico</label>
+            </div>
+            <div class="username">
+                <input type="password" id="password" required>
                 <label>Ingrese una contraseña</label>
+            </div>
+            <div class="username">
+                <input type="password" id="confirmPassword" required>
+                <label>Confirme la contraseña</label>
             </div>
             <div class="recordar">Olvidaste la contraseña?</div>
             <input type="submit" value="Crear cuenta">
@@ -28,8 +36,39 @@
 
     <script>
         const form = document.getElementById('registerForm');
+        const usersArray = JSON.parse(localStorage.getItem('users')) || [];
+
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Evita que el formulario se envíe normalmente
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validar que las contraseñas coincidan
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+
+            // Verificar si el usuario ya existe
+            const existingUser = usersArray.find(user => user.username === username || user.email === email);
+            if (existingUser) {
+                alert('El nombre de usuario o el correo electrónico ya están registrados');
+                return;
+            }
+
+            // Crear un nuevo objeto de usuario
+            const newUser = { username, email, password };
+
+            // Agregar el nuevo usuario al array
+            usersArray.push(newUser);
+
+            // Guardar el array de usuarios en localStorage
+            localStorage.setItem('users', JSON.stringify(usersArray));
+
+            // Redirigir a la página de inicio
             window.location.href = 'index.html';
         });
     </script>
