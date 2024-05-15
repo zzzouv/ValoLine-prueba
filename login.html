@@ -3,37 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValoLine - Iniciar sesion</title>
+    <title>ValoLine - Inicio de sesión</title>
     <link rel="stylesheet" href="stylelogin.css">
 </head>
 <body>
     <div class="formulario">
-        <h1>Inicio de sesion</h1>
+        <h1>Iniciar sesión</h1>
         <form method="post" id="loginForm">
             <div class="username">
-                <input type="text" required>
-                <label>Nombre de usuario</label>
+                <input type="text" id="username" required>
+                <label>Nombre de usuario o correo electrónico</label>
             </div>
             <div class="username">
-                <input type="password" required>
-                <label>contraseña</label>
+                <input type="password" id="password" required>
+                <label>Contraseña</label>
             </div>
-            <div class="recordar">
-                <a href="recoverpassword.html">Olvidaste la contraseña?</a>
-            </div>
-            <input type="submit" value="Iniciar">
+            <div class="recordar">¿Olvidaste la contraseña?</div>
+            <input type="submit" value="Iniciar sesión">
             <div class="registrarse">
-                Quiero <a href="register.html">registrarme</a>
+                ¿No tienes una cuenta? <a href="register.html">Regístrate</a>
             </div>
         </form>
     </div>
 
     <script>
         const form = document.getElementById('loginForm');
+        const usersArray = JSON.parse(localStorage.getItem('users')) || [];
+
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Evita que el formulario se envíe normalmente
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Buscar el usuario en el array
+            const user = usersArray.find(user => user.username === username || user.email === username);
+
+            if (user && user.password === password) {
+                // Iniciar sesión exitoso
+                alert('Inicio de sesión exitoso');
+                // Aquí puedes redirigir al usuario a otra página o realizar otras acciones
+            } else {
+                // Credenciales incorrectas
+                alert('Nombre de usuario o contraseña incorrectos');
+            }
+
+            // Redirigir a la página de inicio
             window.location.href = 'index.html';
         });
+
     </script>
 </body>
 </html>
