@@ -36,19 +36,19 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Buscar el usuario en el array
+            // Busca el usuario en el array
             const user = usersArray.find(user => user.username === username || user.email === username);
-
+            
+            //Si el usuario && contraseña son verdaderos con los datos almacenados en el array
             if (user && user.password === password) {
-                // Iniciar sesión exitoso
+                // Iniciar sesion exitoso
                 alert('Inicio de sesión exitoso');
-                // Aquí puedes redirigir al usuario a otra página o realizar otras acciones
             } else {
                 // Credenciales incorrectas
-                alert('Nombre de usuario o contraseña incorrectos');
+                alert('Nombre de usuario o contraseña incorrectos, por favor vuelta a intentarlo');
             }
 
-            // Redirigir a la página de inicio
+            //El if a ser verdaderp, saldra el mensaje del formulario y lo reedirigira al index
             window.location.href = 'index.html';
         });
 
