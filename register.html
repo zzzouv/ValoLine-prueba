@@ -41,6 +41,7 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Evita que el formulario se envíe normalmente
 
+            //Se guardan los datos ingresados por el usuario en las variables cont asi no se puede reasignar a otro valor despues de su inicializacion como error.
             const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -52,7 +53,7 @@
                 return;
             }
 
-            // Verificar si el usuario ya existe
+            // Verificar si el usuario ya existe en el array
             const existingUser = usersArray.find(user => user.username === username || user.email === email);
             if (existingUser) {
                 alert('El nombre de usuario o el correo electrónico ya están registrados');
@@ -68,7 +69,7 @@
             // Guardar el array de usuarios en localStorage
             localStorage.setItem('users', JSON.stringify(usersArray));
 
-            // Redirigir a la página de inicio
+            // Redirigir al index cuando este listo el registro
             window.location.href = 'index.html';
         });
     </script>
