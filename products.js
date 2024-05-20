@@ -1,3 +1,5 @@
+//No tenemos jQUERY en el carrito solo usamos manipulaciones del DOM, manejo de eventos y logica.
+
 //aqui llamamos al css de la imagen del carrito
 const btnCart = document.querySelector('.container-cart-icon');
 const containerCartProducts = document.querySelector('.container-cart-products');
