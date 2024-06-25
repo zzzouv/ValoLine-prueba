@@ -329,6 +329,9 @@
 
       </div>
     </section><!-- End Testimonials Section -->
+    
+    <!-- Add the map div here -->
+    <div id="map" style="height: 400px; width: 100%;"></div>
 
   </main><!-- End #main -->
   
@@ -363,6 +366,23 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Add the map scripts here -->
+  <script>
+    function iniciarMap(){
+        var coord = {lat:-33.4426751198839, lng: -70.64717942856048}; // Coordenadas de Santiago, Chile
+        var map = new google.maps.Map(document.getElementById('map'),{
+          zoom: 12,
+          center: coord
+        });
+        var marker = new google.maps.Marker({
+          position: coord,
+          map: map
+        });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+  
 
 </body>
 
