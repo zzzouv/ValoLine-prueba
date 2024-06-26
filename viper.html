@@ -285,6 +285,33 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+    
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Obtener el nombre de usuario del localStorage si está presente
+        const username = localStorage.getItem('username');
+
+        // Si el nombre de usuario está presente, actualizar el menú de cuenta
+        if (username) {
+            const cuentaMenu = document.getElementById('cuentaMenu');
+            cuentaMenu.innerHTML = `
+                <a href="#">${username} <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul class="submenu">
+                    <li><button id="logoutButton" class="logout-btn">Cerrar sesión</button></li>
+                </ul>
+            `;
+
+            // Agregar funcionalidad al botón de cerrar sesión
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', () => {
+                // Limpiar localStorage (simulando cerrar sesión)
+                localStorage.removeItem('username');
+                // Redirigir al inicio de sesión (puedes modificar la ruta según tu estructura)
+                window.location.href = 'index.html';
+            });
+        }
+    });
+  </script>
 
 </body>
 </html>
