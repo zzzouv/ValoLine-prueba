@@ -41,8 +41,8 @@
             
             //Si el usuario && contraseña son verdaderos con los datos almacenados en el array
             if (user && user.password === password) {
-                // Iniciar sesion exitoso
-                alert('Inicio de sesión exitoso');
+                localStorage.setItem('username', user.username);
+                window.location.href = 'index.html';
             } else {
                 // Credenciales incorrectas
                 alert('Nombre de usuario o contraseña incorrectos, por favor vuelta a intentarlo');
