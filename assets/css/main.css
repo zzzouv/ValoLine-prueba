@@ -486,6 +486,54 @@ h6 {
   .navbar .dropdown ul li:hover > .personajes-menu {
     display: block;
   }
+
+  /* Estilos para el enlace de cerrar sesión */
+  .navbar .dropdown ul .logout-link {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    display: block; 
+    text-decoration: none; 
+  }
+
+  .navbar .dropdown ul .logout-link:hover {
+    color: #fff; /* Color del texto al pasar el mouse */
+  }
+
+  .navbar .dropdown ul .logout-link:focus {
+    outline: none; /* Quitar el contorno al hacer foco */
+  }
+
+  /* Estilo para mover el botón de cerrar sesión a la derecha */
+  .navbar .submenu {
+    text-align: center;
+  }
+
+  .logout-btn {
+    background-color: transparent;  
+    color: #fff; 
+    border: none; 
+    padding: 8px 16px; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease; 
+  }
+
+  .logout-btn:hover {
+    color: white;
+    background-color: transparent;  
+  }
+
+  #logoutButton {
+    margin-left: -65px; 
+}
+
 }
 
 @media (min-width: 1280px) and (max-width: 1366px) {
@@ -499,7 +547,6 @@ h6 {
 }
 
 @media (min-width: 1280px) {
-
   .mobile-nav-show,
   .mobile-nav-hide {
     display: none;
