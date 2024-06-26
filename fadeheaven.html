@@ -167,12 +167,18 @@
             <li><a href="services.html">Servicios</a></li>
             <li><a href="contact.html">Contacto</a></li>
             <li><a href="products.html">Tienda</a></li>
-            <li class="dropdown"><a href="#"><span>cuenta</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-              <ul>
-                <li><a href="login.html">Iniciar sesion</a></li>
-                <li><a href="register.html">Registrarse</a></li>
+
+              
+            <li class="dropdown" id="cuentaMenu">
+              <a href="#">Cuenta <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <ul class="submenu">
+                <li id="loginOption"><a href="login.html">Iniciar sesión</a></li>
+                <li id="registerOption"><a href="register.html">Registrarse</a></li>
               </ul>
             </li>
+            <li id="loggedInUser" style="display: none;"><a href="#"></a></li>
+
+              
           </ul>
         </nav><!-- .navbar -->
   
