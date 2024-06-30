@@ -136,5 +136,5 @@ document.getElementById('formulario-tarjeta').addEventListener('submit', functio
     setTimeout(function() {
        document.getElementById('mensaje-exito').style.display = 'none';
        window.location.href = 'products.html';
-    }, 5000);
+    }, 4000);
 });
