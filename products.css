@@ -1383,7 +1383,7 @@ header{
     top: 55%;
     right: 0;
 
-    background-color: #27a776;
+    background-color: rgb(22, 218, 15);
     color: #fff;
     width: 25px;
     height: 25px;
@@ -1539,3 +1539,11 @@ header{
 .hidden{
     display: none;
 }
+
+.boton-comprar {
+  color: white;
+  background-color: rgb(22, 218, 15);
+  box-shadow: 0 1px 10px rgb(255, 255, 255);
+}
+
+/* color de la pagina: #27a776; */
