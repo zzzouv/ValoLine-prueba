@@ -134,6 +134,7 @@ document.getElementById('formulario-tarjeta').addEventListener('submit', functio
     
     // Opcional: oculta el mensaje después de 3 segundos
     setTimeout(function() {
-        document.getElementById('mensaje-exito').style.display = 'none';
-    }, 3000);
+       document.getElementById('mensaje-exito').style.display = 'none';
+       window.location.href = 'products.html';
+    }, 5000);
 });
