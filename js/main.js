@@ -124,17 +124,61 @@ formulario.inputCCV.addEventListener('keyup', () => {
 	ccv.textContent = formulario.inputCCV.value;
 });
 
+function mostrarError(mensaje) {
+    const modal = document.getElementById('errorModal');
+    const span = document.getElementsByClassName("close")[0];
+    const errorMessage = document.getElementById('errorMessage');
+    
+    errorMessage.textContent = mensaje;
+    modal.style.display = "block";
+    
+    span.onclick = function() {
+        cerrarModal();
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            cerrarModal();
+        }
+    }
+
+    // Asegurarse de que el modal esté en primer plano
+    modal.style.zIndex = "9999";
+    document.querySelector('.modal-content').style.zIndex = "10000";
+}
+
+function cerrarModal() {
+    const modal = document.getElementById('errorModal');
+    modal.style.display = "none";
+}
+
+function validarFormulario() {
+    const numero = formulario.inputNumero.value.trim();
+    const nombre = formulario.inputNombre.value.trim();
+    const mes = formulario.selectMes.value;
+    const year = formulario.selectYear.value;
+    const ccv = formulario.inputCCV.value.trim();
+
+    if (numero === '' || nombre === '' || mes === 'Mes' || year === 'Año' || ccv === '') {
+        mostrarError('Por favor, completa todos los campos');
+        return false;
+    }
+    return true;
+}
+
 document.getElementById('formulario-tarjeta').addEventListener('submit', function(e) {
     e.preventDefault(); // Previene el envío del formulario
     
-    // Aquí iría la lógica para procesar la compra
-    
-    // Muestra el mensaje de éxito
-    document.getElementById('mensaje-exito').style.display = 'block';
-    
-    // Opcional: oculta el mensaje después de 3 segundos
-    setTimeout(function() {
-       document.getElementById('mensaje-exito').style.display = 'none';
-       window.location.href = 'products.html';
-    }, 4000);
+    if (validarFormulario()) {
+        // Aquí iría la lógica para procesar la compra
+        
+        // Muestra el mensaje de éxito
+        document.getElementById('mensaje-exito').style.display = 'block';
+        
+        // Opcional: oculta el mensaje después de 3 segundos
+        setTimeout(function() {
+           document.getElementById('mensaje-exito').style.display = 'none';
+           window.location.href = 'products.html';
+        }, 4000);
+    }
 });
